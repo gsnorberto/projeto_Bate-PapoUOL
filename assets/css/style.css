@@ -1,0 +1,100 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(240,240,240);
+}
+header{
+    position: fixed;
+    top: 0;
+    left: calc(50% - (375px/2));
+    width: 375px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 0 19px;
+    background-color: #FFFFFF;
+}
+
+.container{
+    width: 375px;
+    height: 500px;
+    margin: 0 auto;
+    background-color: #F3F3F3;
+}
+
+.logo{
+    width: 75px;
+    height: 53px;
+}
+.icon_people{
+    width: 45px;
+    height: 45px;
+}
+
+main{
+    margin-top: 80px;
+}
+
+.msgs{
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+.msgs::-webkit-scrollbar{
+    width: 5px;
+}
+.msgs::-webkit-scrollbar-thumb{
+    width: 5px;
+    background-color: #CCCCCC;
+}
+
+.msg{
+    width: 100%;
+    height: auto;
+    font-size: 14px;
+    display: flex;
+    padding: 15px 10px;
+    margin: 5px 0;
+    background-color: #FFFFFF;
+}
+.send-time{
+    color: #AAAAAA;
+    margin-right: 7px;
+}
+.text span{
+    font-weight: 700;
+}
+.private-msg{
+    background-color: #FFDEDE;
+}
+.status-msg{
+    background: #DCDCDC;
+}
+
+footer{
+    position: fixed;
+    top: 580px;
+    left: calc(50% - (375px/2));
+    width: 375px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 27px 0 17px;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+    background-color: #FFFFFF;
+}
+
+footer button{
+    border: 0;
+}
+footer button img{
+    width: 26px;
+    height: 26px;
+}
+footer input{
+    width: 260px;
+    border: 0;
+    outline: 0;
+}
