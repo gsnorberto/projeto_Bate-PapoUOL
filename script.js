@@ -15,6 +15,7 @@ function joinChat(){
         .then(()=>{
             console.log("Conctado...");
             intervalStayOn = setInterval(stayOn, 5000); // Keep User Online
+            fetchMessages();
             intervalFetchMessages = setInterval(fetchMessages, 3000); // Fetch messages on the server
         })
         .catch((e) => {
@@ -37,7 +38,7 @@ function fetchMessages () {
     allMessages = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages")
         .then((response) => {
             allMessages = response.data;
-            console.log(allMessages);
+            //console.log(allMessages);
             insertMessage();
         })
         .catch((e) => {console.log("Error: ", e.response.status);})
@@ -45,9 +46,11 @@ function fetchMessages () {
 
 // Insert Messages
 function insertMessage () {
+    document.querySelector('.msgs').innerHTML = '';
+
     for(let i = 0 ; i < allMessages.length ; i++){
         document.querySelector('.msgs').innerHTML += `
-            <div class="msg">
+            <div class="msg ${allMessages[i].type == 'status' ? 'status-msg' : ''} ${allMessages[i].from == userName ? 'reserved-msg' : ''}">
                 <div class="send-time">
                     ${allMessages[i].time}
                 </div>
@@ -75,11 +78,13 @@ function sendMessage () {
             type: 'message'
         }
         axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", message)
-            .then(() => console.log('mensagem enviada'))
+            .then(() => {
+                console.log('mensagem enviada');
+                fetchMessages();
+            })
             .catch((e) => console.log(e.response.status))
         
         //clear input text
-        fetchMessages();
         document.querySelector('.input-text').value = '';
     }
 }
@@ -91,3 +96,4 @@ inputElement.addEventListener('keyup', (e) => {
         sendMessage();
     }
 })
+
