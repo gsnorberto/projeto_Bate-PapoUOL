@@ -88,6 +88,7 @@ footer{
 
 footer button{
     border: 0;
+    cursor: pointer;
 }
 footer button img{
     width: 26px;
