@@ -61,12 +61,15 @@ main{
     margin: 5px 0;
     background-color: #FFFFFF;
 }
-.send-time{
+.msg .send-time{
     color: #AAAAAA;
     margin-right: 7px;
 }
-.text span{
+.msg .name-user{
     font-weight: 700;
+}
+.text{
+    line-height: 1.5;
 }
 .reserved-msg{
     background-color: #FFDEDE;

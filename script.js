@@ -44,18 +44,15 @@ function fetchMessages () {
         .catch((e) => {console.log("Error: ", e.response.status);})
 }
 
-// Insert Messages
+// Insert Messages  in chat
 function insertMessage () {
     document.querySelector('.msgs').innerHTML = '';
 
     for(let i = 0 ; i < allMessages.length ; i++){
         document.querySelector('.msgs').innerHTML += `
             <div class="msg ${allMessages[i].type == 'status' ? 'status-msg' : ''} ${allMessages[i].from == userName ? 'reserved-msg' : ''}">
-                <div class="send-time">
-                    ${allMessages[i].time}
-                </div>
                 <div class="text">
-                    <span>${allMessages[i].from}</span> ${allMessages[i].text}...
+                    <span class="send-time">${allMessages[i].time}</span><span class="name-user">${allMessages[i].from}</span> ${allMessages[i].text}...
                 </div>
             </div>
         `
@@ -82,7 +79,11 @@ function sendMessage () {
                 console.log('mensagem enviada');
                 fetchMessages();
             })
-            .catch((e) => console.log(e.response.status))
+            .catch((e) => {
+                console.log(e.response.status);
+                alert('Você não está mais na sala!')
+                window.location.reload();
+            })
         
         //clear input text
         document.querySelector('.input-text').value = '';
