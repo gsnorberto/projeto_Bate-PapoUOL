@@ -181,6 +181,7 @@ main{
     background: #DCDCDC;
 }
 
+
 footer{
     position: fixed;
     bottom: 0%;
@@ -188,13 +189,32 @@ footer{
     width: 375px;
     height: 80px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     padding: 0 27px 0 17px;
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
     background-color: #FFFFFF;
 }
-
+footer .input-area{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
+}
+footer .contact-selected{
+    color: #505050;
+    font-size: 14px;
+    font-weight: 300;
+}
+footer .input-text{
+    font-size: 18px;
+    color: #000000;
+    font-style: italic;
+}
+footer .input-text::placeholder{
+    color: #000000;
+}
 footer button{
     border: 0;
     cursor: pointer;

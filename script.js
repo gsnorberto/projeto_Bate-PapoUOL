@@ -61,12 +61,14 @@ function insertUsers() {
 
     // check if te contact is online. If not, set "Todos" in contact selected
     let cont = onlineUsers.find((user) => user.name == contactSelected)
-    if(!cont){
+    if (!cont) {
         contactSelected = 'Todos';
+        changeVisibility('public');
+        removeSelectedContact();
     }
 
     document.querySelector('.contacts').innerHTML = `
-        <div class="contact">
+        <div data-identifier="participant" class="contact">
             <div>
                 <ion-icon name="people-sharp"></ion-icon>
                 <div onclick="changeUser('Todos')" class="contact-name">Todos</div>
@@ -75,21 +77,18 @@ function insertUsers() {
         </div>
     `
 
-    
-
     for (let i = 0; i < onlineUsers.length; i++) {
         if (onlineUsers[i].name !== userName) {
             document.querySelector('.contacts').innerHTML += `
-            <div id=${i+2} class="contact">
+            <div data-identifier="participant" id=${i + 2} class="contact">
                 <div>
                     <ion-icon name="person-circle"></ion-icon>
-                    <div onclick="changeUser('${onlineUsers[i].name}', ${i+2})" class="contact-name">${onlineUsers[i].name}</div>
+                    <div onclick="changeUser('${onlineUsers[i].name}', ${i + 2})" class="contact-name">${onlineUsers[i].name}</div>
                 </div>
                 ${contactSelected == onlineUsers[i].name ? '<ion-icon class="chek-icon" name="checkmark-sharp"></ion-icon>' : ''}
             </div>
         `
         }
-
     }
 
 }
@@ -158,6 +157,7 @@ inputLogin.addEventListener('keyup', (e) => {
         enterName();
     }
 })
+
 let inputMsg = document.querySelector('.input-text');
 inputMsg.addEventListener('keyup', (e) => {
     if (e.keyCode === 13) {
@@ -194,6 +194,7 @@ function changeVisibility(visibility) {
     }
 }
 
+// Change selected contact
 function changeUser(contactName, id) {
     if (contactName === 'Todos') {
         document.querySelector('.contact > ion-icon').remove();
@@ -201,12 +202,34 @@ function changeUser(contactName, id) {
         document.querySelector(`.contacts .contact:nth-child(1)`).innerHTML += `
             <ion-icon class="chek-icon" name="checkmark-sharp"></ion-icon>
         `
+
+        removeSelectedContact();
+        changeVisibility('public');
         contactSelected = 'Todos';
     } else {
         document.querySelector('.contact > ion-icon').remove();
         document.getElementById(id).innerHTML += `
             <ion-icon class="chek-icon" name="checkmark-sharp"></ion-icon>
         `
+
+        removeSelectedContact();
+
+        // select a contact
+        document.querySelector('footer').innerHTML += `
+        <div class="contact-selected">
+            Enviando para ${contactName} (Reservadamente)
+        </div>
+        `
+        changeVisibility('private');
+        
         contactSelected = contactName;
+    }
+}
+
+// Remove selected contact 
+function removeSelectedContact() {
+    let verif = document.querySelector('footer .contact-selected');
+    if (verif) {
+        verif.remove();
     }
 }

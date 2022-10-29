@@ -24,8 +24,8 @@
     <div class="login">
         <div class="login-area">
             <img src="./assets/icons/logo2.png" alt="">
-            <input type="text" placeholder="Digite seu nome...">
-            <button onclick="enterName()">Entrar</button>
+            <input data-identifier="enter-name" type="text" placeholder="Digite seu nome...">
+            <button data-identifier="start" onclick="enterName()">Entrar</button>
         </div>
     </div>
 
@@ -44,7 +44,7 @@
                         </div>
                         <ion-icon class="chek-icon" name="checkmark-sharp"></ion-icon>
                     </div>
-                    
+
                 </div>
 
                 <div class="navBar-title">Escolha a visibilidade</div>
@@ -88,10 +88,12 @@
 
     <!-- text input -->
     <footer>
-        <input class="input-text" type="text" placeholder="Escreva aqui...">
-        <button onclick="sendMessage()">
-            <img src="./assets/icons/Vector.png" alt="">
-        </button>
+        <div class="input-area">
+            <input class="input-text" type="text" placeholder="Escreva aqui...">
+            <button onclick="sendMessage()">
+                <img src="./assets/icons/Vector.png" alt="">
+            </button>
+        </div>
     </footer>
 
     <!-- JS -->
