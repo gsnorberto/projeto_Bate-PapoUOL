@@ -78,17 +78,18 @@ header{
 }
 
 .contact,
-.visibility{
+div[data-identifier="visibility"]{
     display: flex;
     justify-content: space-between;
     margin: 15px;
     
 }
 .contact > div,
-.visibility > div{
+div[data-identifier="visibility"] > div{
     display: flex;
     align-items: center;
 }
+
 .navBar-area{
     width: 375px;
     height: 100vh;
@@ -99,6 +100,7 @@ header{
     width: 70%;
     height: 100vh;
     background-color: #FFFFFF;
+    overflow: hidden;
 }
 .navBar-contentArea ion-icon{
     width: 25px;
@@ -125,7 +127,15 @@ ion-icon.chek-icon{
     height: 45px;
     cursor: pointer;
 }
-
+.contact-name{
+    max-width:140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.contact-name,
+.visibility-type{
+    cursor: pointer;
+}
 main{
     height: 100vh;
     padding: 80px 0;

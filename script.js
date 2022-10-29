@@ -4,6 +4,7 @@ let intervalStayOn;
 let intervalFetchMessages;
 let intervalOnlineUsers;
 let onlineUsers = [];
+let contactSelected = 'Todos'; // user from chat list
 
 function enterName() {
     userName = document.querySelector('.login-area input').value;
@@ -57,23 +58,34 @@ function checkOnlineUsers() {
 // Insert online users in the navBar
 function insertUsers() {
     document.querySelector('.contacts').innerHTML = '';
+
+    // check if te contact is online. If not, set "Todos" in contact selected
+    let cont = onlineUsers.find((user) => user.name == contactSelected)
+    if(!cont){
+        contactSelected = 'Todos';
+    }
+
     document.querySelector('.contacts').innerHTML = `
         <div class="contact">
             <div>
                 <ion-icon name="people-sharp"></ion-icon>
-                <div class="contact-name">Todos</div>
+                <div onclick="changeUser('Todos')" class="contact-name">Todos</div>
             </div>
-            <ion-icon class="chek-icon" name="checkmark-sharp"></ion-icon>
+            ${contactSelected == 'Todos' ? '<ion-icon class="chek-icon" name="checkmark-sharp"></ion-icon>' : ''}
         </div>
     `
+
+    
+
     for (let i = 0; i < onlineUsers.length; i++) {
         if (onlineUsers[i].name !== userName) {
             document.querySelector('.contacts').innerHTML += `
-            <div class="contact">
+            <div id=${i+2} class="contact">
                 <div>
                     <ion-icon name="person-circle"></ion-icon>
-                    <div class="contact-name">${onlineUsers[i].name}</div>
+                    <div onclick="changeUser('${onlineUsers[i].name}', ${i+2})" class="contact-name">${onlineUsers[i].name}</div>
                 </div>
+                ${contactSelected == onlineUsers[i].name ? '<ion-icon class="chek-icon" name="checkmark-sharp"></ion-icon>' : ''}
             </div>
         `
         }
@@ -163,4 +175,38 @@ document.querySelector('.navBar-area').addEventListener('click', (e) => {
 //open navBar
 function openNavBar() {
     document.querySelector('.navBar').style.display = 'flex';
+}
+
+function changeVisibility(visibility) {
+    //Public
+    if (visibility === 'public') {
+        document.querySelector('.visibility > ion-icon').remove();
+        document.querySelector('.visibilities .visibility:nth-child(1)').innerHTML += `
+            <ion-icon class="chek-icon" name="checkmark-sharp"></ion-icon>
+        `;
+    }
+    //Private
+    else if (visibility === 'private') {
+        document.querySelector('.visibility > ion-icon').remove();
+        document.querySelector('.visibilities .visibility:nth-child(2)').innerHTML += `
+            <ion-icon class="chek-icon" name="checkmark-sharp"></ion-icon>
+        `;
+    }
+}
+
+function changeUser(contactName, id) {
+    if (contactName === 'Todos') {
+        document.querySelector('.contact > ion-icon').remove();
+
+        document.querySelector(`.contacts .contact:nth-child(1)`).innerHTML += `
+            <ion-icon class="chek-icon" name="checkmark-sharp"></ion-icon>
+        `
+        contactSelected = 'Todos';
+    } else {
+        document.querySelector('.contact > ion-icon').remove();
+        document.getElementById(id).innerHTML += `
+            <ion-icon class="chek-icon" name="checkmark-sharp"></ion-icon>
+        `
+        contactSelected = contactName;
+    }
 }

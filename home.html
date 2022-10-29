@@ -49,17 +49,17 @@
 
                 <div class="navBar-title">Escolha a visibilidade</div>
                 <div class="visibilities">
-                    <div class="visibility">
+                    <div data-identifier="visibility" class="visibility">
                         <div>
                             <ion-icon name="lock-open"></ion-icon>
-                            <div class="visibility-type">Público</div>
+                            <div onclick="changeVisibility('public')" class="visibility-type">Público</div>
                         </div>
                         <ion-icon class="chek-icon" name="checkmark-sharp"></ion-icon> <!-- Only one -->
                     </div>
-                    <div class="visibility">
+                    <div data-identifier="visibility" class="visibility">
                         <div>
                             <ion-icon name="lock-closed"></ion-icon>
-                            <div class="visibility-type">Reservadamente</div>
+                            <div onclick="changeVisibility('private')" class="visibility-type">Reservadamente</div>
                         </div>
 
                     </div>
