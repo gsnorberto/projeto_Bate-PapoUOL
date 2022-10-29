@@ -4,8 +4,11 @@ let intervalStayOn;
 let intervalFetchMessages;
 
 function enterName(){
-    userName = prompt('Digite um nome de usuário');
-    joinChat();
+    userName = document.querySelector('.login-area input').value;
+
+    if(userName.trim() !== ''){
+        joinChat();
+    }
 }
 enterName();
     
@@ -14,12 +17,14 @@ function joinChat(){
     axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", { name: userName })
         .then(()=>{
             console.log("Conctado...");
+            document.querySelector('.login').style.display = 'none';
             intervalStayOn = setInterval(stayOn, 5000); // Keep User Online
             fetchMessages();
             intervalFetchMessages = setInterval(fetchMessages, 3000); // Fetch messages on the server
         })
         .catch((e) => {
             if(e.response.status === 400){
+                document.querySelector('.login-area input').value = '';
                 alert('Nome de usuário já está em uso');
             }
             enterName();
@@ -90,9 +95,16 @@ function sendMessage () {
     }
 }
 
+let inputLogin = document.querySelector('.login input');
+inputLogin.addEventListener('keyup', (e) => {
+    if(e.keyCode === 13){
+        enterName();
+    }
+})
+
 // Send Message with 'enter' key
-let inputElement = document.querySelector('.input-text');
-inputElement.addEventListener('keyup', (e) => {
+let inputMsg = document.querySelector('.input-text');
+inputMsg.addEventListener('keyup', (e) => {
     if(e.keyCode === 13){
         sendMessage();
     }
