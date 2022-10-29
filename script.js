@@ -95,14 +95,13 @@ function sendMessage () {
     }
 }
 
+// Send with 'enter' key
 let inputLogin = document.querySelector('.login input');
 inputLogin.addEventListener('keyup', (e) => {
     if(e.keyCode === 13){
         enterName();
     }
 })
-
-// Send Message with 'enter' key
 let inputMsg = document.querySelector('.input-text');
 inputMsg.addEventListener('keyup', (e) => {
     if(e.keyCode === 13){
@@ -110,3 +109,14 @@ inputMsg.addEventListener('keyup', (e) => {
     }
 })
 
+// close navBar - click outside navBar
+document.querySelector('.navBar-area').addEventListener('click', (e) => {
+    if(!(document.querySelector('.navBar-contentArea').contains(e.target))){
+        document.querySelector('.navBar').style.display = 'none';
+    }
+})
+
+//open navBar
+function openNavBar(){
+    document.querySelector('.navBar').style.display = 'flex';
+}

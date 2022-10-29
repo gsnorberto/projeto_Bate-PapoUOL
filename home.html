@@ -28,13 +28,62 @@
             <button onclick="enterName()">Entrar</button>
         </div>
     </div>
-    
+
+    <!-- Nav Bar -->
+    <nav class="navBar">
+        <div class="navBar-area">
+            <div onclick="" style="width: 30%; background-color: #000000; opacity: 0.6"></div>
+            <div class="navBar-contentArea">
+
+                <div class="navBar-title">Escolha um contato para enviar mensagem</div>
+                <div class="contacts">
+                    <div class="contact">
+                        <div>
+                            <ion-icon name="people-sharp"></ion-icon>
+                            <div class="contact-name">Todos</div>
+                        </div>
+                        <ion-icon class="chek-icon" name="checkmark-sharp"></ion-icon> <!-- Only one -->
+                    </div>
+                    <div class="contact">
+                        <div>
+                            <ion-icon name="person-circle"></ion-icon>
+                            <div class="contact-name">João</div>
+                        </div>
+                    </div>
+                    <div class="contact">
+                        <div>
+                            <ion-icon name="person-circle"></ion-icon>
+                            <div class="contact-name">Maria</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navBar-title">Escolha a visibilidade</div>
+                <div class="visibilities">
+                    <div class="visibility">
+                        <div>
+                            <ion-icon name="lock-open"></ion-icon>
+                            <div class="visibility-type">Público</div>
+                        </div>
+                        <ion-icon class="chek-icon" name="checkmark-sharp"></ion-icon> <!-- Only one -->
+                    </div>
+                    <div class="visibility">
+                        <div>
+                            <ion-icon name="lock-closed"></ion-icon>
+                            <div class="visibility-type">Reservadamente</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <header>
         <div class="logo">
             <img src="./assets/icons/logo1.png" alt="">
         </div>
-        <div class="icon_people">
+        <div onclick="openNavBar()" class="icon_people">
             <img src="./assets/icons/people1.png" alt="">
         </div>
     </header>
@@ -43,7 +92,7 @@
     <main>
         <div class="container">
             <div class="msgs">
-                
+
             </div>
         </div>
     </main>
@@ -57,6 +106,7 @@
     </footer>
 
     <!-- JS -->
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./script.js"></script>
 </body>
