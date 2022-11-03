@@ -24,8 +24,8 @@
     <div class="login">
         <div class="login-area">
             <img src="./assets/icons/logo2.png" alt="">
-            <input data-identifier="enter-name" type="text" placeholder="Digite seu nome...">
-            <button data-identifier="start" onclick="enterName()">Entrar</button>
+            <input data-test="input-name" data-identifier="enter-name" type="text" placeholder="Digite seu nome...">
+            <button data-test="send-name" data-identifier="start" onclick="enterName()">Entrar</button>
         </div>
     </div>
 
@@ -50,14 +50,14 @@
                 <div class="navBar-title">Escolha a visibilidade</div>
                 <div class="visibilities">
                     <div data-identifier="visibility" class="visibility">
-                        <div>
+                        <div data-test="public">
                             <ion-icon name="lock-open"></ion-icon>
                             <div onclick="changeVisibility('public')" class="visibility-type">Público</div>
                         </div>
-                        <ion-icon class="chek-icon" name="checkmark-sharp"></ion-icon> <!-- Only one -->
+                        <ion-icon data-test="check" class="chek-icon" name="checkmark-sharp"></ion-icon> <!-- Only one -->
                     </div>
                     <div data-identifier="visibility" class="visibility">
-                        <div>
+                        <div data-test="private">
                             <ion-icon name="lock-closed"></ion-icon>
                             <div onclick="changeVisibility('private')" class="visibility-type">Reservadamente</div>
                         </div>
@@ -72,7 +72,7 @@
         <div class="logo">
             <img src="./assets/icons/logo1.png" alt="">
         </div>
-        <div onclick="openNavBar()" class="icon_people">
+        <div data-test="open-participants" onclick="openNavBar()" class="icon_people">
             <img src="./assets/icons/people1.png" alt="">
         </div>
     </header>
@@ -89,8 +89,8 @@
     <!-- text input -->
     <footer>
         <div class="input-area">
-            <input class="input-text" type="text" placeholder="Escreva aqui...">
-            <button onclick="sendMessage()">
+            <input data-test="input-message" class="input-text" type="text" placeholder="Escreva aqui...">
+            <button data-test="send-message" onclick="sendMessage()">
                 <img src="./assets/icons/Vector.png" alt="">
             </button>
         </div>

@@ -69,9 +69,9 @@ function insertUsers() {
 
     document.querySelector('.contacts').innerHTML = `
         <div data-identifier="participant" class="contact">
-            <div>
+            <div onclick="changeUser('Todos')" data-test="all">
                 <ion-icon name="people-sharp"></ion-icon>
-                <div onclick="changeUser('Todos')" class="contact-name">Todos</div>
+                <div class="contact-name">Todos</div>
             </div>
             ${contactSelected == 'Todos' ? '<ion-icon class="chek-icon" name="checkmark-sharp"></ion-icon>' : ''}
         </div>
@@ -81,11 +81,11 @@ function insertUsers() {
         if (onlineUsers[i].name !== userName) {
             document.querySelector('.contacts').innerHTML += `
             <div data-identifier="participant" id=${i + 2} class="contact">
-                <div>
+                <div onclick="changeUser('${onlineUsers[i].name}', ${i + 2})" data-test="participant">
                     <ion-icon name="person-circle"></ion-icon>
-                    <div onclick="changeUser('${onlineUsers[i].name}', ${i + 2})" class="contact-name">${onlineUsers[i].name}</div>
+                    <div class="contact-name">${onlineUsers[i].name}</div>
                 </div>
-                ${contactSelected == onlineUsers[i].name ? '<ion-icon class="chek-icon" name="checkmark-sharp"></ion-icon>' : ''}
+                ${contactSelected == onlineUsers[i].name ? '<ion-icon data-test="check" class="chek-icon" name="checkmark-sharp"></ion-icon>' : ''}
             </div>
         `
         }
@@ -110,7 +110,7 @@ function insertMessage() {
 
     for (let i = 0; i < allMessages.length; i++) {
         document.querySelector('.msgs').innerHTML += `
-            <div class="msg ${allMessages[i].type == 'status' ? 'status-msg' : ''} ${allMessages[i].from == userName ? 'reserved-msg' : ''}">
+            <div data-test="message" class="msg ${allMessages[i].type == 'status' ? 'status-msg' : ''} ${allMessages[i].from == userName ? 'reserved-msg' : ''}">
                 <div class="text">
                     <span class="send-time">${allMessages[i].time}</span><span class="name-user">${allMessages[i].from}</span> ${allMessages[i].text}...
                 </div>
@@ -128,11 +128,12 @@ function sendMessage() {
     let text = document.querySelector('.input-text').value;
 
     if (text !== '') {
+        console.log(contactSelected);
         let message = {
             from: userName,
-            to: 'Todos',
+            to: contactSelected,
             text: text,
-            type: 'message'
+            type: contactSelected == 'Todos' ? 'message' : 'private_message'
         }
         axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", message)
             .then(() => {
@@ -182,14 +183,14 @@ function changeVisibility(visibility) {
     if (visibility === 'public') {
         document.querySelector('.visibility > ion-icon').remove();
         document.querySelector('.visibilities .visibility:nth-child(1)').innerHTML += `
-            <ion-icon class="chek-icon" name="checkmark-sharp"></ion-icon>
+            <ion-icon data-test="check" class="chek-icon" name="checkmark-sharp"></ion-icon>
         `;
     }
     //Private
     else if (visibility === 'private') {
         document.querySelector('.visibility > ion-icon').remove();
         document.querySelector('.visibilities .visibility:nth-child(2)').innerHTML += `
-            <ion-icon class="chek-icon" name="checkmark-sharp"></ion-icon>
+            <ion-icon data-test="check" class="chek-icon" name="checkmark-sharp"></ion-icon>
         `;
     }
 }
